@@ -52,17 +52,17 @@ Create PHP version 7.4 container using ubuntu-18.04 and run in port 9090 with ap
 
 * You can install another [mysql-server](https://hub.docker.com/r/mysql/mysql-server) container and connect using its **_container-name_** as host. that's why docker network was made 
 
->```shel
+```shel
 :~# docker run --restart=always --name=mysql-8.0 --network=database-link -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql/mysql-server:8.0 mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 :~# docker exec -it mysql-8.0 mysql -uroot -pmy-secret-pw
 mysql> CREATE USER 'username'@'%' IDENTIFIED BY 'password';
 mysql> GRANT ALL PRIVILEGES ON *.* TO 'username'@'%';
 mysql> flush privileges;
 mysql> exit;
-
+```
 * Create sample php 7.4 connection
 
->```shel
+```shel
 <?php
     $servername = "mysql-8.0"; // container-name of mysql-server container
     $username = "username";
@@ -75,20 +75,20 @@ mysql> exit;
     }
     echo "Connected successfully";
 ?>
-
+```
 > paste and save above code in below connection.php file
->```shel
+```shel
 :~#  nano /var/www/7.4/html/connection.php
-
+```
 #### In linux also you can try this
 
 * You can install [mysql-server](https://dev.mysql.com/doc/mysql-getting-started/en/) on your local server and use your server **_ip_** as each PHP version mysql connection host.
 
 >**_ip_** - This should not be your [localhost](http://127.0.0.1) ip address. This should be the ip address that your network gave you
 
->```shell
+```shell
 :~# ip addr
-
+```
 [comment]: # (* Also you can install mysql-server inside window and use your server ip as each PHP version mysql connection host.)
 
 ### Useful File Locations
