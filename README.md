@@ -63,37 +63,25 @@ Clone this repository to your local directory
 ```shell
 :~# mkdir /home/docker
 :~# cd /home/docker
-:~# git clone git@github.com:ashenud/multiple-php-versions.git
+:~# git clone https://github.com/ashenud/multiple-php-versions.git
+:~# cd multiple-php-versions
 ```
 
 #### Docker configurations
 
-Create docker network first. by setting up a docker network, you can allow multiple docker containers to communicate with each other (eg - mysql database container connect)
+You do not need to make any advanced configuration in this process. all settings are done in the docker-compose.yml file.
 
 ```shell
-:~# docker network create database-link
-```
-
-Create PHP version 5.6 container using ubuntu-18.04 and run in port 8080 with apache server
-
-```shell
-:~# docker run --restart=always --name php-5.6 --network=database-link -p 8080:80 -v /var/www/5.6:/var/www -d ashenud/multiple-php-versions:1st-bulid-5.6
-```
-
-Create PHP version 7.4 container using ubuntu-18.04 and run in port 9090 with apache server
-
-```shell
-:~# docker run --restart=always --name php-7.4 --network=database-link -p 9090:80 -v /var/www/7.4:/var/www -d ashenud/multiple-php-versions:1st-bulid-7.4
+:~# docker-compose up -d
 ```
 
 ### MySql Configuration
 
 #### In both linux and windows ([WSL](https://docs.microsoft.com/en-us/windows/wsl))
 
-* You can install another [mysql-server](https://hub.docker.com/r/mysql/mysql-server) container and connect using its **_container-name_** as host. that's why docker network was made 
+* You can connect using **_mysql container ip_** as host. if you want to change the network, you can change it in docker-compose.yml and run mysql container again.
 
 ```shel
-:~# docker run --restart=always --name=mysql-8.0 --network=database-link -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql/mysql-server:8.0 mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 :~# docker exec -it mysql-8.0 mysql -uroot -pmy-secret-pw
 mysql> CREATE USER 'username'@'%' IDENTIFIED BY 'password';
 mysql> GRANT ALL PRIVILEGES ON *.* TO 'username'@'%';
