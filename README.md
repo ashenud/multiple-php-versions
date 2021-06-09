@@ -25,7 +25,8 @@ If you are running  **apache** on your local server, remove it first. then insta
 :~# apt-get install -y software-properties-common
 :~# apt install -y nginx
 ```
-Create mount folders structure  for each PHP versions root directory
+
+Create mount folders structure for each PHP versions root directory
 
 ```shell
 :~# mkdir -p /var/www/7.4/html/
@@ -33,6 +34,36 @@ Create mount folders structure  for each PHP versions root directory
 :~# echo "<?php phpinfo(); ?>" > /var/www/7.4/html/index.php
 :~# echo "<?php phpinfo(); ?>" > /var/www/5.6/html/index.php
 :~# chown -R [useranme] /var/www/
+```
+
+Create mount folders structure for mysql database location and create configuration my.cnf file
+
+```shell
+:~# mkdir -p /root/docker/mysql/databases/
+:~# mkdir -p /root/docker/mysql/docker-entrypoint-initdb.d/
+```
+
+```shel
+[mysqld]
+skip-host-cache
+skip-name-resolve
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+secure-file-priv=/var/lib/mysql-files
+user=mysql
+pid-file=/var/run/mysqld/mysqld.pid
+```
+> paste and save above code in below my.cnf file
+```shel
+:~#  nano /root/docker/mysql/my.cnf
+```
+
+Clone this repository to your local directory
+
+```shell
+:~# mkdir /home/docker
+:~# cd /home/docker
+:~# git clone git@github.com:ashenud/multiple-php-versions.git
 ```
 
 #### Docker configurations
