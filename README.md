@@ -1,4 +1,4 @@
-# Run Two Different PHP Versions At The Same Time
+# RUN TWO DIFFERENT PHP VIRSIONS AT SAME TIME
 
 For my personal projects, I needed to have two different PHP versions running at the same time of my server. And those project needed mysqli and msql extensions separately.
 
@@ -18,6 +18,13 @@ In order to run this container you'll need docker installed.
 
 #### Preparation of prerequisites
 
+If you are running  **apache** on your local server, remove it first. then install **nginx**
+
+```shell
+:~# apt update && apt upgrade -y
+:~# apt-get install -y software-properties-common
+:~# apt install -y nginx
+```
 Create mount folders structure  for each PHP versions root directory
 
 ```shell
@@ -27,6 +34,8 @@ Create mount folders structure  for each PHP versions root directory
 :~# echo "<?php phpinfo(); ?>" > /var/www/5.6/html/index.php
 :~# chown -R [useranme] /var/www/
 ```
+
+#### Docker configurations
 
 Create docker network first. by setting up a docker network, you can allow multiple docker containers to communicate with each other (eg - mysql database container connect)
 
