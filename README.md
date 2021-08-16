@@ -36,28 +36,6 @@ Create mount folders structure for each PHP versions root directory
 :~# chown -R [useranme] /var/www/
 ```
 
-Create mount folders structure for mysql database location and create configuration my.cnf file
-
-```shell
-:~# mkdir -p /root/docker/mysql/databases/
-:~# mkdir -p /root/docker/mysql/docker-entrypoint-initdb.d/
-```
-
-```shel
-[mysqld]
-skip-host-cache
-skip-name-resolve
-datadir=/var/lib/mysql
-socket=/var/lib/mysql/mysql.sock
-secure-file-priv=/var/lib/mysql-files
-user=mysql
-pid-file=/var/run/mysqld/mysqld.pid
-```
-> paste and save above code in below my.cnf file
-```shel
-:~#  nano /root/docker/mysql/my.cnf
-```
-
 Clone this repository to your local directory
 
 ```shell

@@ -1,6 +1,6 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
-MAINTAINER  Ashen Udithamal <ashen@64bit.com>
+LABEL MAINTAINER="Ashen Udithamal <ashen@64bit.com>"
 
 ENV TZ=Asia/Colombo
 
@@ -17,6 +17,9 @@ RUN sed -i "s/; max_input_vars = 1000/max_input_vars = 10000/" /etc/php/7.4/apac
 RUN sed -i "s/memory_limit = 128M/memory_limit = 512M/" /etc/php/7.4/apache2/php.ini
 RUN sed -i "s/post_max_size = 8M/post_max_size = 1024M/" /etc/php/7.4/apache2/php.ini
 RUN sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 1024M/" /etc/php/7.4/apache2/php.ini
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN apt-get install -y nano
 
 RUN a2enmod rewrite
 RUN a2enmod ssl

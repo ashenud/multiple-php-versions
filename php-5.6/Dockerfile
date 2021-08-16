@@ -1,6 +1,6 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
-MAINTAINER  Ashen Udithamal <ashen@64bit.com>
+LABEL MAINTAINER="Ashen Udithamal <ashen@64bit.com>"
 
 ENV TZ=Asia/Colombo
 

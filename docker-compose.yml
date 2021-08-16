@@ -36,11 +36,14 @@ services:
     ports:
         - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: my-secret-pw
+      MYSQL_ROOT_PASSWORD: '${DB_ROOT_PASSWORD}'
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
-      - "/root/docker/mysql/databases:/var/lib/mysql"
-      - "/root/docker/mysql/my.cnf:/etc/my.cnf"
-      - "/root/docker/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
+      - "${DOCKER_DATA_LOCATION}/mysql/databases:/var/lib/mysql"
+      - "${DOCKER_DATA_LOCATION}/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
     networks:
       database-link:
         ipv4_address: 172.16.238.12
