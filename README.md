@@ -21,9 +21,8 @@ In order to run this container you'll need docker installed.
 If you are running  **apache** on your local server, remove it first. then install **nginx**
 
 ```shell
-:~# apt update && apt upgrade -y
-:~# apt-get install -y software-properties-common
-:~# apt install -y nginx
+:~# apt update -y
+:~# apt install nginx -y
 ```
 
 Create mount folders structure for each PHP versions root directory
