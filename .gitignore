@@ -6,3 +6,4 @@
 *.personal
 php-7.4/app/phpmyadmin
 .env
+*phpmyadmin
