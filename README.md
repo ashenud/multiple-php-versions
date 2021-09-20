@@ -112,6 +112,10 @@ mysql> exit;
 
 >`http://127.0.0.1:9090/connection.php`
 
+## Other
+
+You can do the same process using [Dockerfile](https://docs.docker.com/). For more details, see [this docker hub repository](https://hub.docker.com/r/ashenud/multiple-php-versions). 
+
 ## Author
 
 * **[Ashen Udithamal](https://www.linkedin.com/in/ashenud/)** 
